@@ -1,19 +1,22 @@
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import './css/signUp.css'
 
 
-function RegisterPasajero() {
+function RegisterAdmin() {
   const [name, setName] = useState('');
   const [last, setLast] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [dni, setDni] = useState('');
   const [country, setCountry] = useState('Argentina');
-  const [type, setType] = useState('pasajero');
+  const [type, setType] = useState('administrador');
   const [birthDate, setBirthDate] = useState('');
   const navigate = useNavigate();
 
+
+  //----------------------------FUNCION PARA REGISTRAR USUARIOS------------------//
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +35,7 @@ function RegisterPasajero() {
           nacionalidad: country,
           password: password,
           email: email,
-          tipo: "pasajero",
+          tipo: "administrador",
           estado: "inactivo"
         })
       });
@@ -50,13 +53,17 @@ function RegisterPasajero() {
     }
   };
 
+
+  //----------------------CUERPO DE LA PAGINA-------------------------------------------//
+
   return (
-    <div className="login-container">
-      <h2>Registrarse como Pasajero</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="fname">Nombres</label>
+    <div class="login-container">
+      <h2 class="nav-provisional" >Registrarse como Administrador</h2>
+      <form class="form-signUp" onSubmit={handleSubmit}>
+        <div class="container-formItems">
+          <label class="form-label" htmlFor="fname">Nombres</label>
           <input
+            class="form-input"
             type="text"
             id="fname"
             value={name}
@@ -65,9 +72,10 @@ function RegisterPasajero() {
             placeholder="Tu Nombre"
           />
         </div>
-        <div>
-          <label htmlFor="lname">Apellidos</label>
+        <div class="container-formItem">
+          <label class="form-label" htmlFor="lname">Apellidos</label>
           <input
+            class="form-input"
             type="text"
             id="lname"
             value={last}
@@ -76,9 +84,10 @@ function RegisterPasajero() {
             placeholder="Tu Apellido"
           />
         </div>
-        <div>
-          <label htmlFor="dni">Dni:</label>
+        <div class="container-formItem">
+          <label class="form-label" htmlFor="dni">Dni:</label>
           <input
+            class="form-input"
             type="number"
             id="dni"
             value={dni}
@@ -88,9 +97,10 @@ function RegisterPasajero() {
             
           />
         </div>
-        <div>
-          <label htmlFor="birthDate">Fecha de Nacimiento:</label>
+        <div class="container-formItem">
+          <label class="form-label" htmlFor="birthDate">Fecha de Nacimiento:</label>
           <input
+            class="form-input"
             type="date"
             id="birthDate"
             value={birthDate}
@@ -98,9 +108,10 @@ function RegisterPasajero() {
             required
           />
         </div>
-        <div>
-          <label htmlFor="email">Email:</label>
+        <div class="container-formItem">
+          <label class="form-label" htmlFor="email">Email:</label>
           <input
+            class="form-input"
             type="email"
             id="email"
             value={email}
@@ -109,9 +120,10 @@ function RegisterPasajero() {
             placeholder="Tu Email"
           />
         </div>
-        <div>
-          <label htmlFor="password">Contraseña:</label>
+        <div class="container-formItem">
+          <label class="form-label" htmlFor="password">Contraseña:</label>
           <input
+            class="form-input"
             type="password"
             id="password"
             value={password}
@@ -119,9 +131,9 @@ function RegisterPasajero() {
             required
           />
         </div>
-        <div>
-          <label htmlFor="country">Nacionalidad</label>
-          <select id="country" name="nacionalidad" value={country} onChange={(e) => setCountry(e.target.value)}>
+        <div class="container-formItem">
+          <label class="form-label" htmlFor="country">Nacionalidad</label>
+          <select class="form-select" id="country" name="nacionalidad" value={country} onChange={(e) => setCountry(e.target.value)}>
             <option value="Argentina">Argentina</option>
             <option value="Chile">Chile</option>
             <option value="Bolivia">Bolivia</option>
@@ -131,7 +143,7 @@ function RegisterPasajero() {
             <option value="Otro">Otro</option>
           </select>
         </div>
-        <button type="submit">Registrarse</button>
+        <button class="form-btnSubmit" type="submit">Registrarse</button>
       </form>
       <footer>
         <p>¿Ya tenes una Cuenta?<Link to="/login">Inicia sesión aquí</Link></p>
@@ -140,4 +152,4 @@ function RegisterPasajero() {
   );
 }
 
-export default RegisterPasajero;
+export default RegisterAdmin;

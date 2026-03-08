@@ -1,0 +1,42 @@
+form {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+label {display: block;}
+
+.form-input[type=text], .form-select {
+  width: 70%;
+  padding: 12px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.button-conductor {
+  box-sizing: border-box;
+  background-color: #774deb;
+  border: 1px solid #f7f7f7;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 17px;
+  padding: 15px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #61a157;
+  width: 150px;
+  height: auto;
+}
+
+.button-conductor:hover {
+  background-color: #5b48d4;
+}
+
+.button-conductor:active {
+  position: relative;
+  top: 1px;
+}

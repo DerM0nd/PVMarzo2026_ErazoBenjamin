@@ -1,16 +1,16 @@
 import { useState } from 'react'
 import { Routes, Route, Link } from "react-router-dom";
-import RegisterPasajero from "./RegisterPasajero";
+import LayoutNav from "./LayoutNav";
+import RegisterPasajero from "./RegistrarPasajero";
+import RegisterAdmin from "./RegistrarAdmin";
+import Login from "./Login";
+import CuentaUsuario from "./CuentaUsuario";
+import './css/index.css'
 
 function Home() {
 
   return (
     <>
-      <header class="navHeader">
-        <div class="divHeader-container">
-          <h1 class="header-container-CurrentPage">Menu de Selección</h1>
-        </div>
-      </header>
       <div class="main">
         <div class="divMain-container">
           <div class="main-containerText fila">
@@ -18,13 +18,13 @@ function Home() {
           </div>
           <div class="main-buttonContainer">
             <div class="divContainer-button fila">
-              <Link to="/admin">
+              <Link to="/registrarAdmin">
                 <button className="button-conductor">Administrador</button>
               </Link>
               {/* <a href="#"><button class="button-conductor">Administrador</button></a> */}
             </div>
             <div class="divContainer-button fila">
-              <Link to="/registerPasajero">
+              <Link to="/registrarPasajero">
                 <button className="button-pasajero">Pasajero</button>
               </Link>
               {/* <a href="#"><button class="button-pasajero">Pasajero</button></a> */}
@@ -39,9 +39,14 @@ function Home() {
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/#" element={<Home />} />
-      <Route path="/registerPasajero" element={<RegisterPasajero />} />
+      <Route path="/" element={<LayoutNav />}>
+        <Route index element={<Home />} />
+        <Route path="/#" element={<Home />} />
+        <Route path="/registrarPasajero" element={<RegisterPasajero />} />
+        <Route path="/registrarAdmin" element={<RegisterAdmin />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/cuentaUsuario" element={<CuentaUsuario />} />
+      </Route>
     </Routes>
   );
 }
