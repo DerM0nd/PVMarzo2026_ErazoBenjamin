@@ -9,7 +9,7 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = async (e) => {
+    const guardarUsuario = async (e) => {
         e.preventDefault();
 
         try {
@@ -45,7 +45,7 @@ function Login() {
         <>
             <div className="form-container">
                 <div className="text-container"><h2>Iniciar Sesión</h2></div>
-                <form className="form-login" onSubmit={handleSubmit}>
+                <form className="form-login" onSubmit={guardarUsuario}>
                     <div className="container-formItems">
                         <label className="form-label" htmlFor="femail">Email</label>
                         <input
@@ -70,7 +70,8 @@ function Login() {
                     </div>
                     <button className="form-btnSubmit" type="submit">Iniciar Sesión</button>
                 </form>
-                <p>¿No tenes una Cuenta?<Link to="/">Registrate aca</Link></p>
+                <p>¿No tenes una Cuenta?<Link to="/registrarAdmin">Registrate aca para administrador</Link></p>
+                <p><Link to="/registrarPasajero">Registrate aca para pasajero</Link></p>
             </div>
         </>
     )

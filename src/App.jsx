@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Routes, Route, Link } from "react-router-dom";
 import LayoutNav from "./LayoutNav";
 import RegisterPasajero from "./RegistrarPasajero";
@@ -6,6 +5,9 @@ import RegisterAdmin from "./RegistrarAdmin";
 import Login from "./Login";
 import CuentaUsuario from "./CuentaUsuario";
 import ModificardoUsuario from "./ModificarUsuario";
+import CargarHabitacion from "./CargarHabitacion";
+import ListaHabitacion from "./ListaHabitacion";
+import Confirmar from "./Confirmar";
 import './css/index.css'
 
 function Home() {
@@ -20,12 +22,12 @@ function Home() {
           <div className="main-buttonContainer">
             <div className="divContainer-button fila">
               <Link to="/registrarAdmin">
-                <button className="button-conductor">Administrador</button>
+                <button className="btn">Administrador</button>
               </Link>
             </div>
             <div className="divContainer-button fila">
               <Link to="/registrarPasajero">
-                <button className="button-pasajero">Pasajero</button>
+                <button className="btn">Pasajero</button>
               </Link>
             </div>
           </div>
@@ -46,6 +48,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/cuentaUsuario" element={<CuentaUsuario />} />
         <Route path="/modificarUsuario" element={<ModificardoUsuario />} />
+        <Route path="/cargarHabitacion" element={<CargarHabitacion />} />
+        <Route path="/listaHabitacion" element={<ListaHabitacion />} />
+        <Route path="/confirmacion/:accion" element={<Confirmar />} />
       </Route>
     </Routes>
   );

@@ -15,10 +15,7 @@ function RegisterPasajero() {
   const [birthDate, setBirthDate] = useState('');
   const navigate = useNavigate();
 
-
-  //----------------------------FUNCION PARA REGISTRAR USUARIOS------------------//
-
-  const handleSubmit = async (e) => {
+  const registrarPasajero = async (e) => {
     e.preventDefault();
 
     try {
@@ -54,13 +51,10 @@ function RegisterPasajero() {
   };
 
 
-  //----------------------CUERPO DE LA PAGINA-------------------------------------------//
-
-
   return (
     <div className="login-container">
       <h2>Registrarse como Pasajero</h2>
-      <form className="form-signUp" onSubmit={handleSubmit}>
+      <form className="form-signUp" onSubmit={registrarPasajero}>
         <div>
           <label htmlFor="fname">Nombres</label>
           <input
@@ -69,7 +63,6 @@ function RegisterPasajero() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            placeholder="Tu Nombre"
           />
         </div>
         <div>
@@ -80,7 +73,6 @@ function RegisterPasajero() {
             value={last}
             onChange={(e) => setLast(e.target.value)}
             required
-            placeholder="Tu Apellido"
           />
         </div>
         <div>
@@ -91,7 +83,6 @@ function RegisterPasajero() {
             value={dni}
             onChange={(e) => setDni(e.target.value)}
             required
-            placeholder="Tu DNI"
             
           />
         </div>
@@ -113,7 +104,6 @@ function RegisterPasajero() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            placeholder="Tu Email"
           />
         </div>
         <div>
@@ -138,7 +128,7 @@ function RegisterPasajero() {
             <option value="Otro">Otro</option>
           </select>
         </div>
-        <button type="submit">Registrarse</button>
+        <button className="form-btnSubmit" type="submit">Registrarse</button>
       </form>
       <footer>
         <p>¿Ya tenes una Cuenta?<Link to="/login">Inicia sesión aquí</Link></p>

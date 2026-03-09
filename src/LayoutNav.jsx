@@ -29,7 +29,7 @@ function LayoutNav() {
                             </li>
 
                             <li>
-                                <Link to="/habitaciones">Habitaciones</Link>
+                                <Link to="/listaHabitacion">Habitaciones</Link>
                             </li>
 
                             <li>
@@ -37,7 +37,7 @@ function LayoutNav() {
                             </li>
 
                             <li>
-                                <Link to={usuario ? "/cuentaUsuario" : "/login"}>Panel</Link>
+                                <Link to="/cuentaUsuario">Panel</Link>
                             </li>
                         </div>
                     </ul>

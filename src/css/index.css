@@ -48,8 +48,7 @@
 
 /*ESTILOS*/
 
-.button-conductor,
-.button-pasajero {
+.btn {
   box-sizing: border-box;
   background-color: #625E58;
   border: 1px solid #A28A6A;
@@ -65,20 +64,11 @@
   height: auto;
 }
 
-.button-conductor:hover {
+.btn:hover {
   background-color: #827665;
 }
 
-.button-pasajero:hover {
-  background-color: #827665;
-}
-
-.button-conductor:active {
-  position: relative;
-  top: 1px;
-}
-
-.button-pasajero:active {
+.btn:active {
   position: relative;
   top: 1px;
 }

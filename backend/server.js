@@ -27,6 +27,18 @@ app.get("/usuarios", (req, res) => {
   });
 });
 
+app.get("/habitacion", (req, res) => {
+  db.query("SELECT * FROM habitaciones", (err, result) => {
+    res.json(result);
+  });
+});
+
+app.get("/reserva", (req, res) => {
+  db.query("SELECT * FROM reservas", (err, result) => {
+    res.json(result);
+  });
+});
+
 app.listen(3001, () => {
   console.log("Servidor corriendo en puerto 3001");
 });
@@ -146,6 +158,38 @@ app.delete("/usuario/:dni", (req, res) => {
     });
 
 });
+
+// CREANDO HABITACION
+
+app.post("/habitaciones", (req, res) => {
+
+  const {
+    tipo,
+    servicios,
+    descripcion,
+    costo,
+    estado
+  } = req.body;
+  const sql = `
+    INSERT INTO habitaciones
+    (tipo, servicios, descripcion, costo, estado)
+    VALUES (?, ?, ?, ?, ?)
+  `;
+  db.query(
+    sql,
+    [tipo, servicios, descripcion, costo, estado],
+    (err, result) => {
+      if (err) {
+        res.status(500).json(err);
+      } else {
+        res.json({ mensaje: "Habitación creada correctamente" });
+      }
+    }
+  );
+
+});
+
+
 
 // LISTANDO HABITACIONES DISPONIBLES
 
