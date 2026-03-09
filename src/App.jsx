@@ -5,29 +5,28 @@ import RegisterPasajero from "./RegistrarPasajero";
 import RegisterAdmin from "./RegistrarAdmin";
 import Login from "./Login";
 import CuentaUsuario from "./CuentaUsuario";
+import ModificardoUsuario from "./ModificarUsuario";
 import './css/index.css'
 
 function Home() {
 
   return (
     <>
-      <div class="main">
-        <div class="divMain-container">
-          <div class="main-containerText fila">
-            <h1 class="main-AppTitle">Hoteleria</h1>
+      <div className="main">
+        <div className="divMain-container">
+          <div className="main-containerText fila">
+            <h1 className="main-AppTitle">Hoteleria</h1>
           </div>
-          <div class="main-buttonContainer">
-            <div class="divContainer-button fila">
+          <div className="main-buttonContainer">
+            <div className="divContainer-button fila">
               <Link to="/registrarAdmin">
                 <button className="button-conductor">Administrador</button>
               </Link>
-              {/* <a href="#"><button class="button-conductor">Administrador</button></a> */}
             </div>
-            <div class="divContainer-button fila">
+            <div className="divContainer-button fila">
               <Link to="/registrarPasajero">
                 <button className="button-pasajero">Pasajero</button>
               </Link>
-              {/* <a href="#"><button class="button-pasajero">Pasajero</button></a> */}
             </div>
           </div>
         </div>
@@ -46,6 +45,7 @@ function App() {
         <Route path="/registrarAdmin" element={<RegisterAdmin />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cuentaUsuario" element={<CuentaUsuario />} />
+        <Route path="/modificarUsuario" element={<ModificardoUsuario />} />
       </Route>
     </Routes>
   );

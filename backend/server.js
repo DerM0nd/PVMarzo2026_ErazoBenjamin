@@ -31,7 +31,7 @@ app.listen(3001, () => {
   console.log("Servidor corriendo en puerto 3001");
 });
 
-// CARGAR DATOS-------------------
+// ----------------------CARGAR DATOS-------------------
 
 // CREANDO USUARIO
 
@@ -60,7 +60,8 @@ app.post("/usuarios", (req, res) => {
     (err, result) => {
       if (err) {
         res.status(500).json(err);
-      } else {
+      }
+      else {
         res.json({ mensaje: "Usuario creado correctamente" });
       }
     }
@@ -94,6 +95,56 @@ app.post("/login", (req, res) => {
     }
 
   });
+});
+
+// MODIFICANDO USUARIO
+
+app.put("/usuario/:dni", (req, res) => {
+
+    const dni  = req.params.dni;
+    const { nombre, apellido, email, password } = req.body;
+
+    const sql = `UPDATE usuarios
+        SET nombre = ?, apellido = ?, email = ?, password = ?
+        WHERE dni = ?`;
+
+    db.query(sql, [nombre, apellido, email, password, dni], (err, result) => {
+
+        if (err) {
+            res.status(500).json(err);
+            return;
+        }
+
+        res.json({
+            mensaje: "Usuario actualizado correctamente"
+        });
+
+    });
+
+});
+
+
+// ELIMINANDO USUARIO
+
+app.delete("/usuario/:dni", (req, res) => {
+
+    const { dni } = req.params;
+
+    const sql = "DELETE FROM usuarios WHERE dni = ?";
+
+    db.query(sql, [dni], (err, result) => {
+
+        if (err) {
+            res.status(500).json(err);
+            return;
+        }
+
+        res.json({
+            mensaje: "Usuario eliminado correctamente"
+        });
+
+    });
+
 });
 
 // LISTANDO HABITACIONES DISPONIBLES

@@ -57,7 +57,7 @@ function Login() {
                             required
                         />
                     </div>
-                    <div class="container-formItem">
+                    <div className="container-formItem">
                         <label className="form-label" htmlFor="fpassword">Contraseña</label>
                         <input
                             className="form-input"

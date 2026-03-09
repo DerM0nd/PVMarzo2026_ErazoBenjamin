@@ -60,7 +60,7 @@ function RegisterPasajero() {
   return (
     <div className="login-container">
       <h2>Registrarse como Pasajero</h2>
-      <form class="form-signUp" onSubmit={handleSubmit}>
+      <form className="form-signUp" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="fname">Nombres</label>
           <input

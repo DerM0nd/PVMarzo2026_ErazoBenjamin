@@ -57,13 +57,13 @@ function RegisterAdmin() {
   //----------------------CUERPO DE LA PAGINA-------------------------------------------//
 
   return (
-    <div class="login-container">
-      <h2 class="nav-provisional" >Registrarse como Administrador</h2>
-      <form class="form-signUp" onSubmit={handleSubmit}>
-        <div class="container-formItems">
-          <label class="form-label" htmlFor="fname">Nombres</label>
+    <div className="login-container">
+      <h2 className="nav-provisional" >Registrarse como Administrador</h2>
+      <form className="form-signUp" onSubmit={handleSubmit}>
+        <div className="container-formItems">
+          <label className="form-label" htmlFor="fname">Nombres</label>
           <input
-            class="form-input"
+            className="form-input"
             type="text"
             id="fname"
             value={name}
@@ -72,10 +72,10 @@ function RegisterAdmin() {
             placeholder="Tu Nombre"
           />
         </div>
-        <div class="container-formItem">
-          <label class="form-label" htmlFor="lname">Apellidos</label>
+        <div className="container-formItem">
+          <label className="form-label" htmlFor="lname">Apellidos</label>
           <input
-            class="form-input"
+            className="form-input"
             type="text"
             id="lname"
             value={last}
@@ -84,10 +84,10 @@ function RegisterAdmin() {
             placeholder="Tu Apellido"
           />
         </div>
-        <div class="container-formItem">
-          <label class="form-label" htmlFor="dni">Dni:</label>
+        <div className="container-formItem">
+          <label className="form-label" htmlFor="dni">Dni:</label>
           <input
-            class="form-input"
+            className="form-input"
             type="number"
             id="dni"
             value={dni}
@@ -97,8 +97,8 @@ function RegisterAdmin() {
             
           />
         </div>
-        <div class="container-formItem">
-          <label class="form-label" htmlFor="birthDate">Fecha de Nacimiento:</label>
+        <div className="container-formItem">
+          <label className="form-label" htmlFor="birthDate">Fecha de Nacimiento:</label>
           <input
             class="form-input"
             type="date"
@@ -108,8 +108,8 @@ function RegisterAdmin() {
             required
           />
         </div>
-        <div class="container-formItem">
-          <label class="form-label" htmlFor="email">Email:</label>
+        <div className="container-formItem">
+          <label className="form-label" htmlFor="email">Email:</label>
           <input
             class="form-input"
             type="email"
@@ -120,10 +120,10 @@ function RegisterAdmin() {
             placeholder="Tu Email"
           />
         </div>
-        <div class="container-formItem">
-          <label class="form-label" htmlFor="password">Contraseña:</label>
+        <div className="container-formItem">
+          <label className="form-label" htmlFor="password">Contraseña:</label>
           <input
-            class="form-input"
+            className="form-input"
             type="password"
             id="password"
             value={password}
@@ -131,9 +131,9 @@ function RegisterAdmin() {
             required
           />
         </div>
-        <div class="container-formItem">
-          <label class="form-label" htmlFor="country">Nacionalidad</label>
-          <select class="form-select" id="country" name="nacionalidad" value={country} onChange={(e) => setCountry(e.target.value)}>
+        <div className="container-formItem">
+          <label className="form-label" htmlFor="country">Nacionalidad</label>
+          <select className="form-select" id="country" name="nacionalidad" value={country} onChange={(e) => setCountry(e.target.value)}>
             <option value="Argentina">Argentina</option>
             <option value="Chile">Chile</option>
             <option value="Bolivia">Bolivia</option>
@@ -143,7 +143,7 @@ function RegisterAdmin() {
             <option value="Otro">Otro</option>
           </select>
         </div>
-        <button class="form-btnSubmit" type="submit">Registrarse</button>
+        <button className="form-btnSubmit" type="submit">Registrarse</button>
       </form>
       <footer>
         <p>¿Ya tenes una Cuenta?<Link to="/login">Inicia sesión aquí</Link></p>
