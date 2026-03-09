@@ -8,6 +8,8 @@ import ModificardoUsuario from "./ModificarUsuario";
 import CargarHabitacion from "./CargarHabitacion";
 import ListaHabitacion from "./ListaHabitacion";
 import Confirmar from "./Confirmar";
+import Reservar from "./Reservar";
+import MiReserva from "./MiReserva";
 import './css/index.css'
 
 function Home() {
@@ -51,6 +53,8 @@ function App() {
         <Route path="/cargarHabitacion" element={<CargarHabitacion />} />
         <Route path="/listaHabitacion" element={<ListaHabitacion />} />
         <Route path="/confirmacion/:accion" element={<Confirmar />} />
+        <Route path="/reservar/:codigo" element={<Reservar/>} />
+        <Route path="/miReserva" element={<MiReserva />} />
       </Route>
     </Routes>
   );

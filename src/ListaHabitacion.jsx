@@ -13,53 +13,58 @@ function ListaHabitacion() {
             .catch(err => console.error(err));
     }, []);
 
-    return(
-    <>
-        <div>
-            <h2>Habitaciones</h2>
+    const reservar = (codigo) => {
+        navigate(`/reservar/${codigo}`);
+    };
 
-            {habitaciones.length === 0 ? (
-                <p>No hay habitaciones registradas.</p>
-            ) : (
-                <div className="hab-cardContainer">
-                    <ul className="cardList">
-                    {habitaciones.map((hab) => (
-                        <ul className="card-itemContainer" key={hab.codigo}>
-                            <li className="fila">
-                                <span>Código: </span>
-                                <p><strong>{hab.codigo}</strong></p>
-                            </li>
-                            <li className="fila">
-                                <span>Tipo: </span>
-                                <p><strong>{hab.tipo}</strong></p>
-                            </li>
-                            <li className="fila">
-                                <span>Descripcion: </span>
-                                <p>{hab.descripcion}</p>
-                            </li>
-                            <li className="fila">
-                                <span>Servicios: </span>
-                                <p>{hab.servicios}</p>
-                            </li>
-                            <li className="fila">
-                                <span>Costo: </span>
-                                <p>{hab.costo}</p>
-                            </li>
-                            <li className="fila estado">
-                                <span>{hab.estado}</span>
-                            </li>
-                        </ul>
-                    ))}
-                    </ul>
-                </div>
-            )}
+    return (
+        <>
             <div>
-                <button className="btn" onClick={() => navigate("/cargarHabitacion")}>
-                    Cargar Habitación
-                </button>
+                <h2>Habitaciones</h2>
+
+                {habitaciones.length === 0 ? (
+                    <p>No hay habitaciones registradas.</p>
+                ) : (
+                    <div className="hab-cardContainer">
+                        <div className="cardList">
+                            {habitaciones.map((hab) => (
+                                <ul className="card-itemContainer" key={hab.codigo}>
+                                    <li className="fila">
+                                        <span>Código: </span>
+                                        <p><strong>{hab.codigo}</strong></p>
+                                    </li>
+                                    <li className="fila">
+                                        <span>Tipo: </span>
+                                        <p><strong>{hab.tipo}</strong></p>
+                                    </li>
+                                    <li className="fila">
+                                        <span>Descripcion: </span>
+                                        <p>{hab.descripcion}</p>
+                                    </li>
+                                    <li className="fila">
+                                        <span>Servicios: </span>
+                                        <p>{hab.servicios}</p>
+                                    </li>
+                                    <li className="fila">
+                                        <span>Costo: </span>
+                                        <p>{hab.costo}</p>
+                                    </li>
+                                    <li className="fila estado">
+                                        <span>{hab.estado}</span>
+                                    </li>
+                                    <button className="btn" onClick={() => reservar(hab.codigo)}>Reservar</button>
+                                </ul>
+                            ))}
+                        </div>
+                    </div>
+                )}
+                <div>
+                    <button className="btn" onClick={() => navigate("/cargarHabitacion")}>
+                        Cargar Habitación
+                    </button>
+                </div>
             </div>
-        </div>
-    </>
+        </>
     )
 }
 

@@ -95,7 +95,7 @@ function CargarHabitacion() {
                     </div>
                     <div>
                         <p>
-                            Costo: <strong>{costo}</strong>
+                            Costo: <strong>{costo}</strong> Por día
                         </p>
                     </div>
                     <button className="form-btnSubmit" type="submit">Registrar Habitación</button>

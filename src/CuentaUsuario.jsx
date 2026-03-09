@@ -65,6 +65,9 @@ function CuentaUsuario() {
             <button className="btn" onClick={() => navigate("/confirmacion/logout")}>
                 Cerrar sesión
             </button>
+            <button className="btn" onClick={() => navigate("/miReserva")}>
+                Mis reservas
+            </button>
         </>
     );
 }
