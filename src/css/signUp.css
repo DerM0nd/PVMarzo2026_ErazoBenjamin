@@ -1,12 +1,11 @@
 .signUp-title-container{
   display: block;
   box-sizing: border-box;
-  position: relative;
 }
 
 .signUp-title{
   padding-left: 2rem;
-  margin: 2.5rem 0 !important;
+  margin: 2rem 0 !important;
 }
 
 .signUp-login-container{
@@ -26,11 +25,11 @@
   padding: 10px;
 }
 
-.hab-formP{
-  border-bottom: solid 1px;
-}
-
 .signUp-btnContainer{
   display: flex;
   justify-content: center;
+}
+
+.signUp-div-footer{
+  bottom: 0;
 }

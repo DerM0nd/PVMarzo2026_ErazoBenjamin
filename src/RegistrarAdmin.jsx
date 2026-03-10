@@ -58,7 +58,7 @@ function RegisterAdmin() {
 
   return (
     <>
-    <div className="signUp-title-container"><h2 className="singUp-title">Registrarse como Administrador</h2></div>
+    <div className="signUp-title-container"><h2 className="signUp-title">Registrarse como Administrador</h2></div>
     <div className="signUp-login-container">
       <form className="form-signUp" onSubmit={registrarUsuario}>
         <div className="signUp-formDiv">
@@ -70,7 +70,6 @@ function RegisterAdmin() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            placeholder="Tu Nombre"
           />
         </div>
         <div className="signUp-formDiv">
@@ -82,7 +81,6 @@ function RegisterAdmin() {
             value={last}
             onChange={(e) => setLast(e.target.value)}
             required
-            placeholder="Tu Apellido"
           />
         </div>
         <div className="signUp-formDiv">
@@ -94,7 +92,6 @@ function RegisterAdmin() {
             value={dni}
             onChange={(e) => setDni(e.target.value)}
             required
-            placeholder="Tu DNI"
             
           />
         </div>
@@ -118,7 +115,6 @@ function RegisterAdmin() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            placeholder="Tu Email"
           />
         </div>
         <div className="signUp-formDiv">
@@ -144,12 +140,12 @@ function RegisterAdmin() {
             <option value="Otro">Otro</option>
           </select>
         </div>
-        <div className="singUp-btnContainer"><button className="form-btnSubmit signUp-btn" type="submit">Registrarse</button></div>
+        <div className="signUp-btnContainer"><button className="form-btnSubmit signUp-btn" type="submit">Registrarse</button></div>
       </form>
+    </div>
       <div className="signUp-div-footer">
         <p className="signUp-link">¿Ya tenes una Cuenta?<Link to="/login">Inicia sesión aquí</Link></p>
       </div>
-    </div>
     </>
   );
 }

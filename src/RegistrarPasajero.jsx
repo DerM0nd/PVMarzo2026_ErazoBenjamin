@@ -53,7 +53,7 @@ function RegisterPasajero() {
 
   return (
     <>
-    <div className="signUp-title-container"><h2 className="singUp-title">Registrarse como Pasajero</h2></div>
+    <div className="signUp-title-container"><h2 className="signUp-title">Registrarse como Pasajero</h2></div>
     <div className="signUp-login-container">
       <form className="form-signUp" onSubmit={registrarPasajero}>
         <div className="signUp-formDiv">
@@ -129,12 +129,12 @@ function RegisterPasajero() {
             <option value="Otro">Otro</option>
           </select>
         </div>
-        <div className="singUp-btnContainer"><button className="form-btnSubmit signUp-btn" type="submit">Registrarse</button></div>
+        <div className="signUp-btnContainer"><button className="form-btnSubmit signUp-btn" type="submit">Registrarse</button></div>
       </form>
-      <div className="signUp-div-footer">
+    </div>
+    <div className="signUp-div-footer">
         <p className="signUp-link">¿Ya tenes una Cuenta?<Link to="/login">Inicia sesión aquí</Link></p>
       </div>
-    </div>
     </>
   );
 }
