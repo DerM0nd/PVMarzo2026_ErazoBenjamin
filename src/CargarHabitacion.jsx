@@ -61,44 +61,48 @@ function CargarHabitacion() {
 
     return (
         <>
-            <div className="login-container">
-                <h2>Registrar Habitación</h2>
-                <form className="form-charge" onSubmit={cargarHabitacion}>
-                    <div>
-                        <label htmlFor="fdescripcion">Descripción</label>
+            <div className="hab-title-container">
+                <h2 className="hab-title">Cargar Nueva Habitación</h2>
+            </div>
+            <div className="hab-login-container">  
+                <form className="hab-form-charge" onSubmit={cargarHabitacion}>
+                    <div className="hab-formDiv">
+                        <label htmlFor="hab-fdescripcion-label">Descripción</label>
                         <input
                             type="text"
-                            id="fdescripcion"
+                            id="hab-formDescripcion"
                             value={descripcion}
                             onChange={(e) => setDescripcion(e.target.value)}
-                            required
-                        />
+                            required/>
                     </div>
-                    <div>
-                        <label htmlFor="fservicios">Servicios incluidos</label>
+                    <div className="hab-formDiv">
+                        <label htmlFor="hab-fServicios-label">Servicios incluidos</label>
                         <input
                             type="text"
-                            id="fservicios"
+                            id="hab-formServicios"
                             value={servicios}
                             onChange={(e) => setServicios(e.target.value)}
                             required
+                            placeholder="Desayuno, limpieza..."
                         />
                     </div>
-                    <div>
-                        <label htmlFor="ftipoHabitacion">Tipo de Habitación</label>
-                        <select id="ftipoHabitacion" name="tipo" value={tipo} onChange={(e) => setTipo(e.target.value)}>
+                    <div className="hab-formDiv">
+                        <label htmlFor="hab-fTipoHabitacion-label">Tipo de Habitación</label>
+                        <select id="hab-fTipoHabitacion-select" name="tipo" value={tipo} onChange={(e) => setTipo(e.target.value)}>
                             <option value="simple">Simple</option>
                             <option value="doble">Doble</option>
                             <option value="triple">Triple</option>
                             <option value="premium">Premium</option>
                         </select>
                     </div>
-                    <div>
-                        <p>
+                    <div className="hab-formDiv hab-costos">
+                        <p className="hab-formP">
                             Costo: <strong>{costo}</strong> Por día
                         </p>
                     </div>
-                    <button className="form-btnSubmit" type="submit">Registrar Habitación</button>
+                    <div className="hab-formDiv hab-btnContainer">
+                        <button className="btn" type="submit">Registrar Habitación</button>
+                    </div>
                 </form>
             </div>
         </>

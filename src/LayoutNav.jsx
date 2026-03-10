@@ -6,16 +6,7 @@ function LayoutNav() {
 
     const navigate = useNavigate();
 
-    // const irPanel = () => {
-
     const usuario = JSON.parse(localStorage.getItem("usuario"));
-
-    //     if (!usuario) {
-    //         navigate("/login");
-    //     } else {
-    //         navigate("/dashboard");
-    //     }
-    // };
 
     return (
         <>
@@ -24,21 +15,29 @@ function LayoutNav() {
                 <div className="nav-linksContainer">
                     <ul className="nav-links">
                         <div className="linksContainer fila">
-                            <li>
+                            <div className="link-containerFlex">
+                                <li className="link">
                                 <Link to="/">Inicio</Link>
-                            </li>
+                                </li>
+                            </div>
 
-                            <li>
+                            <div className="link-containerFlex">
+                                <li className="link">
                                 <Link to="/listaHabitacion">Habitaciones</Link>
-                            </li>
+                                </li>
+                            </div>
 
-                            <li>
+                            <div className="link-containerFlex">
+                                <li className="link">
                                 <Link to="/login">Login</Link>
-                            </li>
+                                </li>
+                            </div>
 
-                            <li>
+                            <div className="link-containerFlex">
+                                <li className="link">
                                 <Link to="/cuentaUsuario">Panel</Link>
-                            </li>
+                                </li>
+                            </div>
                         </div>
                     </ul>
                 </div>

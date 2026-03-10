@@ -11,25 +11,27 @@ import Confirmar from "./Confirmar";
 import Reservar from "./Reservar";
 import MiReserva from "./MiReserva";
 import './css/index.css'
+import './css/buttons.css'
+import './css/form.css'
 
 function Home() {
 
   return (
     <>
-      <div className="main">
-        <div className="divMain-container">
-          <div className="main-containerText fila">
-            <h1 className="main-AppTitle">Hoteleria</h1>
+      <div className="index-main">
+        <div className="index-divMain-container">
+          <div className="index-main-containerText fila">
+            <h1 className="index-main-AppTitle">Hoteleria</h1>
           </div>
-          <div className="main-buttonContainer">
-            <div className="divContainer-button fila">
+          <div className="index-main-buttonContainer">
+            <div className="index-divContainer-button fila">
               <Link to="/registrarAdmin">
-                <button className="btn">Administrador</button>
+                <button className="btn index-btn">Administrador</button>
               </Link>
             </div>
-            <div className="divContainer-button fila">
+            <div className="index-divContainer-button fila">
               <Link to="/registrarPasajero">
-                <button className="btn">Pasajero</button>
+                <button className="btn index-btn">Pasajero</button>
               </Link>
             </div>
           </div>

@@ -5,7 +5,7 @@
     align-items: center;
     padding: 0 10px;
     padding-bottom: 0;
-    height: 5rem;
+    height: 5.7rem;
     background-color: #423C33;
     color: white;
 }
@@ -19,17 +19,21 @@
 
 .nav-linksContainer {
     box-sizing: border-box;
-    width: 40%;
+    width: 68vh;
 }
 
 .nav-linksContainer ul {
-    display: flex;
     gap: 20px;
     list-style: none;
 }
 
 .nav-links {
-    width: 30rem;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.linksContainer{
+    width: 100%;
 }
 
 .linksContainer a {
@@ -38,14 +42,26 @@
 }
 
 .fila {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
 .fila li {
     text-align: center;
     width: 7.5rem;
+}
+
+.link-containerFlex{
+    height: 5.5rem ;
+}
+
+.link-containerFlex li{
+    display: grid;
+    place-items: center;
+    height: 100% !important;
+}
+
+.link{
+    border-right: 1px solid black;
 }
 
 a:hover {

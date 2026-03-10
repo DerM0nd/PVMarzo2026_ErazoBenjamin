@@ -52,21 +52,22 @@ function RegisterPasajero() {
 
 
   return (
-    <div className="login-container">
-      <h2>Registrarse como Pasajero</h2>
+    <>
+    <div className="signUp-title-container"><h2 className="singUp-title">Registrarse como Pasajero</h2></div>
+    <div className="signUp-login-container">
       <form className="form-signUp" onSubmit={registrarPasajero}>
-        <div>
-          <label htmlFor="fname">Nombres</label>
+        <div className="signUp-formDiv">
+          <label className="signUp-name">Nombres</label>
           <input
             type="text"
-            id="fname"
+            id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
           />
         </div>
-        <div>
-          <label htmlFor="lname">Apellidos</label>
+        <div className="signUp-formDiv">
+          <label className="signUp-lname">Apellidos</label>
           <input
             type="text"
             id="lname"
@@ -75,8 +76,8 @@ function RegisterPasajero() {
             required
           />
         </div>
-        <div>
-          <label htmlFor="dni">Dni:</label>
+        <div className="signUp-formDiv">
+          <label className="signUp-dni">Dni:</label>
           <input
             type="number"
             id="dni"
@@ -86,8 +87,8 @@ function RegisterPasajero() {
             
           />
         </div>
-        <div>
-          <label htmlFor="birthDate">Fecha de Nacimiento:</label>
+        <div className="signUp-formDiv">
+          <label className="signUp-birthDate">Fecha de Nacimiento:</label>
           <input
             type="date"
             id="birthDate"
@@ -96,8 +97,8 @@ function RegisterPasajero() {
             required
           />
         </div>
-        <div>
-          <label htmlFor="email">Email:</label>
+        <div className="signUp-formDiv">
+          <label className="signUp-email">Email:</label>
           <input
             type="email"
             id="email"
@@ -106,8 +107,8 @@ function RegisterPasajero() {
             required
           />
         </div>
-        <div>
-          <label htmlFor="password">Contraseña:</label>
+        <div className="signUp-formDiv">
+          <label className="signUp-password">Contraseña:</label>
           <input
             type="password"
             id="password"
@@ -116,9 +117,9 @@ function RegisterPasajero() {
             required
           />
         </div>
-        <div>
-          <label htmlFor="country">Nacionalidad</label>
-          <select id="country" name="nacionalidad" value={country} onChange={(e) => setCountry(e.target.value)}>
+        <div className="signUp-formDiv">
+          <label className="signUp-country">Nacionalidad</label>
+          <select id="signUp-country" name="nacionalidad" value={country} onChange={(e) => setCountry(e.target.value)}>
             <option value="Argentina">Argentina</option>
             <option value="Chile">Chile</option>
             <option value="Bolivia">Bolivia</option>
@@ -128,12 +129,13 @@ function RegisterPasajero() {
             <option value="Otro">Otro</option>
           </select>
         </div>
-        <button className="form-btnSubmit" type="submit">Registrarse</button>
+        <div className="singUp-btnContainer"><button className="form-btnSubmit signUp-btn" type="submit">Registrarse</button></div>
       </form>
-      <footer>
-        <p>¿Ya tenes una Cuenta?<Link to="/login">Inicia sesión aquí</Link></p>
-      </footer>
+      <div className="signUp-div-footer">
+        <p className="signUp-link">¿Ya tenes una Cuenta?<Link to="/login">Inicia sesión aquí</Link></p>
+      </div>
     </div>
+    </>
   );
 }
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useUser, useUsuarioGuardado } from "./hooks/useUser";
 import './css/reservar.css'
 
@@ -8,7 +8,6 @@ function Reservar() {
     const [fechaReserva, setFechaReserva] = useState('');
     const [cantidadDias, setCantidadDias] = useState('');
     const [habitacion, setHabitacion] = useState(null);
-    const location = useLocation();
 
     const { codigo } = useParams();
     const usuario = useUsuarioGuardado(); // OBTIENE EL USUARIO
