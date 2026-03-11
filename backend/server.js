@@ -6,6 +6,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+
+// DATOS PARA CONECTARSE A MYSQL
 const db = mysql.createConnection({
   host: "localhost",
   user: "benja",
@@ -43,9 +45,23 @@ app.listen(3001, () => {
 
 app.post("/usuarios", (req, res) => {
 
-  const {dni, apellido, nombre, fecha_nacimiento, tipo, nacionalidad, email, password} = req.body;
+  const { dni, apellido, nombre, fecha_nacimiento, tipo, nacionalidad, email, password } = req.body;
 
-  const sql = ` INSERT INTO usuarios (dni, apellido, nombre, fecha_nacimiento, tipo, nacionalidad, email, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+  const count = (nombre.match(/\d/g) || []).length;
+
+  if (count > 1) {
+    return res.status(400).json({ error: "El nombre solo puede tener un número" });
+  }
+
+  if (!password || password.length < 8 || password.length > 20) {
+    return res.status(400).json({ error: "La contraseña debe tener entre 8 y 20 caracteres" });
+  }
+
+  if (!email) {
+    return res.status(400).json({ error: "Email requerido" });
+  }
+
+  const sql = "INSERT INTO usuarios (dni, apellido, nombre, fecha_nacimiento, tipo, nacionalidad, email, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
   db.query(
     sql,
@@ -82,7 +98,7 @@ app.post("/login", (req, res) => {
         usuario: result[0]
       });
     } else {
-      res.status(401).json({
+      res.status(500).json({
         mensaje: "Credenciales incorrectas"
       });
     }
@@ -94,23 +110,23 @@ app.post("/login", (req, res) => {
 
 app.put("/usuario/:dni", (req, res) => {
 
-    const dni  = req.params.dni;
-    const { nombre, apellido, email, password } = req.body;
+  const dni = req.params.dni;
+  const { nombre, apellido, email, password } = req.body;
 
-    const sql = `UPDATE usuarios SET nombre = ?, apellido = ?, email = ?, password = ? WHERE dni = ?`;
+  const sql = "UPDATE usuarios SET nombre = ?, apellido = ?, email = ?, password = ? WHERE dni = ?";
 
-    db.query(sql, [nombre, apellido, email, password, dni], (err, result) => {
+  db.query(sql, [nombre, apellido, email, password, dni], (err, result) => {
 
-        if (err) {
-            res.status(500).json(err);
-            return;
-        }
+    if (err) {
+      res.status(500).json(err);
+      return;
+    }
 
-        res.json({
-            mensaje: "Usuario actualizado correctamente"
-        });
-
+    res.json({
+      mensaje: "Usuario actualizado correctamente"
     });
+
+  });
 
 });
 
@@ -119,22 +135,22 @@ app.put("/usuario/:dni", (req, res) => {
 
 app.delete("/usuario/:dni", (req, res) => {
 
-    const { dni } = req.params;
+  const { dni } = req.params;
 
-    const sql = "DELETE FROM usuarios WHERE dni = ?";
+  const sql = "DELETE FROM usuarios WHERE dni = ?";
 
-    db.query(sql, [dni], (err, result) => {
+  db.query(sql, [dni], (err, result) => {
 
-        if (err) {
-            res.status(500).json(err);
-            return;
-        }
+    if (err) {
+      res.status(500).json(err);
+      return;
+    }
 
-        res.json({
-            mensaje: "Usuario eliminado correctamente"
-        });
-
+    res.json({
+      mensaje: "Usuario eliminado correctamente"
     });
+
+  });
 
 });
 
@@ -149,7 +165,7 @@ app.post("/habitaciones", (req, res) => {
     costo,
     estado
   } = req.body;
-  const sql = `INSERT INTO habitaciones (tipo, servicios, descripcion, costo, estado) VALUES (?, ?, ?, ?, ?)`;
+  const sql = "INSERT INTO habitaciones (tipo, servicios, descripcion, costo, estado) VALUES (?, ?, ?, ?, ?)";
   db.query(
     sql,
     [tipo, servicios, descripcion, costo, estado],
@@ -186,39 +202,39 @@ app.get("/habitaciones", (req, res) => {
 
 app.post("/reservas", (req, res) => {
 
-    const { codigo_habitacion, fecha_reserva, cantidad_dias, dni_usuario } = req.body;
+  const { codigo_habitacion, fecha_reserva, cantidad_dias, dni_usuario } = req.body;
 
-    const sqlVerificar = `SELECT * FROM reservas WHERE dni_usuario = ?`;
+  const sqlVerificar = "SELECT * FROM reservas WHERE dni_usuario = ?";
 
-    db.query(sqlVerificar, [dni_usuario], (err, result) => {
+  db.query(sqlVerificar, [dni_usuario], (err, result) => {
+
+    if (err) return res.status(500).json(err);
+
+    if (result.length > 0) {
+      return res.status(500).json({
+        mensaje: "El usuario ya tiene una reserva activa"
+      });
+    }
+
+    const sql = "INSERT INTO reservas (codigo_habitacion, fecha_reserva, cantidad_dias, dni_usuario) VALUES (?, ?, ?, ?)";
+
+    db.query(sql,
+      [codigo_habitacion, fecha_reserva, cantidad_dias, dni_usuario],
+      (err, result) => {
 
         if (err) return res.status(500).json(err);
 
-        if (result.length > 0) {
-            return res.status(400).json({
-                mensaje: "El usuario ya tiene una reserva activa"
-            });
-        }
+        const sqlEstado = "UPDATE habitaciones SET estado = 'ocupada' WHERE codigo = ?";
 
-        const sql = `INSERT INTO reservas (codigo_habitacion, fecha_reserva, cantidad_dias, dni_usuario) VALUES (?, ?, ?, ?)`;
+        db.query(sqlEstado, [codigo_habitacion]);
 
-        db.query(sql,
-            [codigo_habitacion, fecha_reserva, cantidad_dias, dni_usuario],
-            (err, result) => {
+        res.json({
+          mensaje: "Reserva creada correctamente"
+        });
 
-                if (err) return res.status(500).json(err);
+      });
 
-                const sqlEstado = ` UPDATE habitaciones SET estado = 'ocupada' WHERE codigo = ?`;
-
-                db.query(sqlEstado, [codigo_habitacion]);
-
-                res.json({
-                    mensaje: "Reserva creada correctamente"
-                });
-
-            });
-
-    });
+  });
 
 });
 
@@ -248,43 +264,43 @@ app.get("/habitaciones/:codigo", (req, res) => {
 
 app.delete("/reservas/:codigo", (req, res) => {
 
-    const codigo = req.params.codigo;
+  const codigo = req.params.codigo;
 
-    const sqlBuscar = `SELECT codigo_habitacion FROM reservas WHERE codigo = ?`;
+  const sqlBuscar = "SELECT codigo_habitacion FROM reservas WHERE codigo = ?";
 
-    db.query(sqlBuscar, [codigo], (err, result) => {
+  db.query(sqlBuscar, [codigo], (err, result) => {
 
-        if (err) {
-            return res.status(500).json(err);
-        }
+    if (err) {
+      return res.status(500).json(err);
+    }
 
-        if (result.length === 0) {
-            return res.status(404).json({
-                mensaje: "Reserva no encontrada"
-            });
-        }
+    if (result.length === 0) {
+      return res.status(500).json({
+        mensaje: "Reserva no encontrada"
+      });
+    }
 
-        const habitacion = result[0].codigo_habitacion;
+    const habitacion = result[0].codigo_habitacion;
 
-        const sqlEliminar = `DELETE FROM reservas WHERE codigo = ?`;
+    const sqlEliminar = "DELETE FROM reservas WHERE codigo = ?";
 
-        db.query(sqlEliminar, [codigo], (err) => {
+    db.query(sqlEliminar, [codigo], (err) => {
 
-            if (err) {
-                return res.status(500).json(err);
-            }
+      if (err) {
+        return res.status(500).json(err);
+      }
 
-            const sqlLiberar = `UPDATE habitaciones SET estado = 'disponible' WHERE codigo = ?`;
+      const sqlLiberar = "UPDATE habitaciones SET estado = 'disponible' WHERE codigo = ?";
 
-            db.query(sqlLiberar, [habitacion]);
+      db.query(sqlLiberar, [habitacion]);
 
-            res.json({
-                mensaje: "Reserva cancelada correctamente"
-            });
-
-        });
+      res.json({
+        mensaje: "Reserva cancelada correctamente"
+      });
 
     });
+
+  });
 
 });
 
@@ -293,9 +309,9 @@ app.delete("/reservas/:codigo", (req, res) => {
 
 app.get("/reservas/usuario/:dni", (req, res) => {
 
-    const dni = req.params.dni;
+  const dni = req.params.dni;
 
-    const sql = `
+  const sql = `
         SELECT 
             r.codigo AS codigo_reserva,
             r.fecha_reserva,
@@ -320,14 +336,14 @@ app.get("/reservas/usuario/:dni", (req, res) => {
         WHERE r.dni_usuario = ?
     `;
 
-    db.query(sql, [dni], (err, result) => {
+  db.query(sql, [dni], (err, result) => {
 
-        if (err) {
-            return res.status(500).json(err);
-        }
+    if (err) {
+      return res.status(500).json(err);
+    }
 
-        res.json(result);
+    res.json(result);
 
-    });
+  });
 
 });

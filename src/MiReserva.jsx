@@ -65,7 +65,7 @@ function MiReserva() {
 
                     <div key={reserva.codigo_reserva} className="card">
 
-                        <h3>Reserva #{reserva.codigo_reserva}</h3>
+                        <h3>Reserva, codigo:{reserva.codigo_reserva}</h3>
 
                         <p><strong>Fecha:</strong> {reserva.fecha_reserva}</p>
                         <p><strong>Días:</strong> {reserva.cantidad_dias}</p>

@@ -58,7 +58,6 @@ function ModificarUsuario() {
         <>
             <div className="h3-container">
                 <h3>Detalles del usuario</h3>
-                <h3></h3>
             </div>
 
             <div className="fila">

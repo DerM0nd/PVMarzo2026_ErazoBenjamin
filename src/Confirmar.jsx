@@ -1,12 +1,12 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useUser } from "./hooks/useUser";
+import { useUser, useUsuarioGuardado } from "./hooks/useUser";
 import './css/confirmar.css'
 
 function Connfirmacion() {
     const { accion } = useParams();
     const navigate = useNavigate();
-
     useUser();
+    const usuario = useUsuarioGuardado();
 
     const titulos = {
         logout: {
@@ -23,7 +23,7 @@ function Connfirmacion() {
         }
     };
 
-    const confirmarAccion = () => {
+    const confirmarAccion = async () => {
 
         if (accion === "logout") {
             localStorage.removeItem("usuario");
@@ -33,24 +33,22 @@ function Connfirmacion() {
             navigate("/modificarUsuario");
         }
         if (accion === "eliminar") {
-            async () => {
-                try {
-                    const response = await fetch(`http://localhost:3001/usuario/${usuario.dni}`, {
-                        method: "DELETE"
-                    });
-                    const data = await response.json();
-                    if (!response.ok) {
-                        throw new Error(data.mensaje || "Error al eliminar cuenta");
-                    }
-                    alert("Cuenta eliminada correctamente");
-
-                    localStorage.removeItem("usuario");
-
-                    navigate("/");
-                } catch (error) {
-                    console.error(error);
-                    alert("Error al eliminar la cuenta");
+            try {
+                const response = await fetch(`http://localhost:3001/usuario/${usuario.dni}`, {
+                    method: "DELETE"
+                });
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data.mensaje || "Error al eliminar cuenta");
                 }
+                alert("Cuenta eliminada correctamente");
+
+                localStorage.removeItem("usuario");
+
+                navigate("/");
+            } catch (error) {
+                console.error(error);
+                alert("Error al eliminar la cuenta");
             }
         }
 

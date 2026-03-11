@@ -43,13 +43,13 @@ function Login() {
 
     return (
         <>
-            <div className="form-container">
-                <div className="text-container"><h2>Iniciar Sesión</h2></div>
-                <form className="form-login" onSubmit={guardarUsuario}>
-                    <div className="container-formItems">
+        <div className="text-container"><h2>Iniciar Sesión</h2></div>
+            <div className="loginform-container">
+                <form className="login-form" onSubmit={guardarUsuario}>
+                    <div className="logincontainer-formItem">
                         <label className="form-label" htmlFor="femail">Email</label>
                         <input
-                            className="form-input"
+                            className="loginform-input"
                             type="email"
                             id="femail"
                             value={email}
@@ -57,10 +57,10 @@ function Login() {
                             required
                         />
                     </div>
-                    <div className="container-formItem">
+                    <div className="logincontainer-formItem">
                         <label className="form-label" htmlFor="fpassword">Contraseña</label>
                         <input
-                            className="form-input"
+                            className="loginform-input"
                             type="password"
                             id="fpassword"
                             value={password}
@@ -68,11 +68,11 @@ function Login() {
                             required
                         />
                     </div>
-                    <button className="form-btnSubmit" type="submit">Iniciar Sesión</button>
+                    <div className="loginform-btnSubmitContainer"><button className="form-btnSubmit loginform-btnSubmit" type="submit">Iniciar Sesión</button></div>
                 </form>
-                <p>¿No tenes una Cuenta?<Link to="/registrarAdmin">Registrate aca para administrador</Link></p>
-                <p><Link to="/registrarPasajero">Registrate aca para pasajero</Link></p>
             </div>
+            <p>¿No tenes una Cuenta?<Link to="/registrarAdmin">Registrate aca para administrador</Link></p>
+            <p><Link to="/registrarPasajero">Registrate aca para pasajero</Link></p>
         </>
     )
 
