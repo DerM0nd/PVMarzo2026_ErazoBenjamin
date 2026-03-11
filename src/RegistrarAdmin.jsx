@@ -32,10 +32,8 @@ function RegisterAdmin() {
       nuevosErrores.last = "El apellido es obligatorio";
     }
     
-    if (dni.length < 6) {
-      nuevosErrores.dni = "El DNI tiene que ser mayor que 6 digitos";
-    }else if(dni.length > 9) {
-      nuevosErrores.dni = "El DNI tiene que ser menor que 9 digitos";
+    if (dni.length < 6 || dni.length > 9) {
+      nuevosErrores.dni = "El DNI debe tener entre 6 y 9 dígitos";
     }
 
     if (birthDate.trim() === "") {
@@ -194,8 +192,8 @@ function RegisterAdmin() {
               // REEMPLAZA CUALQUIER CARACTER QUE NO SEA UN NÚMERO POR UNA CADENA VACÍA
               onChange={(e) => {
 
-                // \D = CUALQUIER CARACTER QUE NO SEA UN DIGITO, g = BUSCAR TODAS LAS COINCIDENCIAS EN LA CADENA
-                const value = e.target.value.replace(/\D/g, "");
+                // \D = CUALQUIER CARACTER QUE NO SEA UN DIGITO, g = BUSCAR TODAS LAS COINCIDENCIAS EN LA CADENA, SLICE POR SI CUALQUIER OTRA VERIFICACION FALLA
+                const value = e.target.value.replace(/\D/g, "").slice(0,8);
                 setDni(value);
               }}
               // --------------------------------------------

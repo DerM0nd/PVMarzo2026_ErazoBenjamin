@@ -47,6 +47,13 @@ app.post("/usuarios", (req, res) => {
 
   const { dni, apellido, nombre, fecha_nacimiento, tipo, nacionalidad, email, password } = req.body;
 
+  // VALIDANDO EL DNI
+  if (!dni || dni.length < 6 || dni.length > 9) {
+    return res.status(400).json({
+      error: "El DNI debe tener entre 6 y 9 dígitos"
+    });
+  }
+
   const count = (nombre.match(/\d/g) || []).length;
 
   if (count > 1) {
