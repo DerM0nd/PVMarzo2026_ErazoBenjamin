@@ -18,8 +18,47 @@ function ModificarUsuario() {
         setUsuario(usuarioGuardado);
     }, []);
 
+    const [error, setError] = useState([]);
+
+    // USANDO EL ESTADO DE ERROR PARA VALIDAR LOS CAMPOS DEL FORMULARIO ANTES DE ENVIAR LOS DATOS AL BACKEND
+
+    const validarFormulario = () => {
+        let nuevosErrores = {};
+
+        if (name.trim() === "") {
+            nuevosErrores.name = "El nombre es obligatorio";
+        }
+
+        if (last.trim() === "") {
+            nuevosErrores.last = "El apellido es obligatorio";
+        }
+
+        if (!email.includes("@")) {
+            nuevosErrores.email = "El email no es válido";
+        }
+        if (password.length < 8) {
+            nuevosErrores.password = "La contraseña debe tener al menos 8 caracteres";
+        }
+
+        if (password.length > 15) {
+            nuevosErrores.password = "La contraseña no puede tener más de 15 caracteres";
+        }
+
+        setError(nuevosErrores);
+
+        return Object.keys(nuevosErrores).length === 0;
+
+        // DEVUELVE TRUE SI NO HAY ERRORES 
+
+    };
+
+
     const actualizarUsuario = async (e) => {
         e.preventDefault();
+
+        if (!validarFormulario()) {
+            return;
+        }
 
         try {
             const response = await fetch(`http://localhost:3001/usuario/${usuario.dni}`, {
@@ -86,9 +125,24 @@ function ModificarUsuario() {
                                     type="text"
                                     id="fname"
                                     value={name}
-                                    onChange={(e) => setName(e.target.value)}
+                                    onChange={(e) => {
+
+                                        // CUENTA LA CANTIDAD DE NÚMEROS EN EL CAMPO DE NOMBRE
+                                        const value = e.target.value;
+
+                                        // \d = CUALQUIER DIGITO DEL 0 AL 9, g = BUSCAR TODAS LAS COINCIDENCIAS EN LA CADENA
+                                        const count = (value.match(/\d/g) || []).length;
+
+                                        // PERMITE INGRESAR NOMBRES CON HASTA 1 NÚMERO, PERO NO MÁS
+                                        if (count <= 1) {
+                                            setName(value);
+                                        }
+                                    }}
                                     required
                                 />
+                                {error.name && (
+                                    <p className="texto-error">{error.name}</p>
+                                )}
                             </div>
 
                             <div className="fila">
@@ -101,9 +155,24 @@ function ModificarUsuario() {
                                     type="text"
                                     id="lname"
                                     value={last}
-                                    onChange={(e) => setLast(e.target.value)}
+                                    onChange={(e) => {
+
+                                        // CUENTA LA CANTIDAD DE NÚMEROS EN EL CAMPO DE NOMBRE
+                                        const value = e.target.value;
+
+                                        // \d = CUALQUIER DIGITO DEL 0 AL 9, g = BUSCAR TODAS LAS COINCIDENCIAS EN LA CADENA
+                                        const count = (value.match(/\d/g) || []).length;
+
+                                        // PERMITE INGRESAR EL APELLIDO SIN NUMEROS
+                                        if (count <= 0) {
+                                            setLast(value);
+                                        }
+                                    }}
                                     required
                                 />
+                                {error.last && (
+                                    <p className="texto-error">{error.last}</p>
+                                )}
                             </div>
 
                             <div className="fila">
@@ -119,6 +188,9 @@ function ModificarUsuario() {
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
                                 />
+                                {error.email && (
+                                    <p className="texto-error">{error.email}</p>
+                                )}
                             </div>
 
                             <div className="fila">
@@ -134,6 +206,9 @@ function ModificarUsuario() {
                                     onChange={(e) => setPassword(e.target.value)}
                                     required
                                 />
+                                {error.password && (
+                                    <p className="texto-error">{error.password}</p>
+                                )}
                             </div>
 
                             <button type="submit">Actualizar usuario</button>
